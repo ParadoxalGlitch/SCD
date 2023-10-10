@@ -46,7 +46,7 @@ double calcular_integral_secuencial(  )
 double funcion_hebra( long i )
 {
 	double suma = 0.0;
-	for (long j=(m/n)*i; j<(m/n)*(i+1)-1; j++){
+	for (long j = (m/n)*i; j < (m/n)*(i+1)-1; j++){
 		const double xj = double(j+0.5)/m;
 		suma += f(xj);
 	}
