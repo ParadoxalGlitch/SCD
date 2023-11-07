@@ -1,0 +1,59 @@
+Varios coches que vienen del norte y del sur pretenden cruzar un puente sobre un rio. Solo existe un carril sobre dicho puente. Pasa uno solo si no hay otro pasando o el que hay va en el mismo sentido
+
+
+
+Monitor Puente{
+
+
+	var CochesDelNorte, CochesDelSur, pasando: integrer
+	ColaNorte, ColaSur : condition
+
+
+
+	procedure EntrarCocheDelNorte()
+	begin
+	 if CochesDelSur > 0 || (pasando == 10) then
+	 	ColaNorte.wait()
+	 CochesDelNorte++
+	 if ColaSur.queue() then
+	 	pasando++;
+	 if (pasando < 10) then
+	 	ColaNorte.signal()
+	end
+
+
+	procedure SalirCocheDelNorte()
+	begin
+
+	CochesDelNorte--;
+
+	if ColaNorte.empty()
+		pasando = 0
+		ColaSur.signal()
+		
+
+	end
+
+	procedure EntrarCocheDelSur()
+	begin
+	if CochesDelNorte > 0 then
+		ColaSur.wait()
+	CochesDelSur++;
+	if ColaSur.queue() then
+		pasando++;
+	if (pasando < 10) then
+		ColaSur.signal()
+	end
+
+	procedure SalirCocheDelSur()
+	begin
+	CochesDelSur--;
+	if CochesDelSur == 0
+		EntrandoDesdeSur := false
+
+	if ColaSur.empty()
+		pasando = 0
+		ColaNorte.signal()
+
+	end
+}

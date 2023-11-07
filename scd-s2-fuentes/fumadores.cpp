@@ -1,22 +1,87 @@
 #include <iostream>
+#include <iomanip>
 #include <cassert>
+#include <random>
 #include <thread>
-#include <mutex>
-#include <random> // dispositivos, generadores y distribuciones aleatorias
-#include <chrono> // duraciones (duration), unidades de tiempo
 #include "scd.h"
 
 using namespace std ;
 using namespace scd ;
 
 // numero de fumadores 
+const int num_fumadores = 3;
+const string ingredientes[num_fumadores] = {"Cerillas", "Tabaco", "Papel"};
 
-const int num_fumadores = 3 ;
 
-Semaphore mostr_vacio = 1;
-Semaphore ingr_disp[num_fumadores] = {0,0,0};
+// *****************************************************************************
+// clase para monitor Estanco, version FIFO, semántica SC, multiples prod/cons
 
-string ingredientes[num_fumadores] = {"Cerillas", "Tabaco", "Papel"};
+class Estanco : public HoareMonitor
+{
+ private:
+ string
+    mostrador;
+
+ CondVar                    // colas condicion:
+   espera_ingrediente,      //  cola donde espera los fumadores
+   espera_recogida;         //  cola donde espera el estanquero
+
+ public:                    // constructor y métodos públicos
+   Estanco() ;              // constructor
+   void obtenerIngrediente(int ingrediente); // extrae del mostrador un ingrediente
+   void ponerIngrediente(int ingrediente); // coloca un ingrediente en el mostrador
+   void esperarRecogidaIngrediente(); // espera a que el mostrador esté vacio
+} ;
+// -----------------------------------------------------------------------------
+
+
+Estanco::Estanco()
+{
+    mostrador = "Vacio";
+    espera_ingrediente = newCondVar();
+    espera_recogida = newCondVar();
+
+}
+
+void Estanco::obtenerIngrediente(int ingrediente)
+{
+
+    while (mostrador == "Vacio")
+        espera_ingrediente.wait();
+
+    while (mostrador != ingredientes[ingrediente]){
+
+        espera_ingrediente.signal();
+        espera_ingrediente.wait();
+    }
+
+
+    mostrador = "Vacio";
+    cout << "           Retirado ingrediente: " << ingredientes[ingrediente] << endl;
+    espera_recogida.signal();
+
+}
+
+void Estanco::ponerIngrediente(int ingrediente)
+{
+
+    mostrador = ingredientes[ingrediente];
+    cout << "           Puesto ingrediente: " << ingredientes[ingrediente] << endl;
+    espera_ingrediente.signal();
+
+}
+
+void Estanco::esperarRecogidaIngrediente()
+{
+
+    if (mostrador != "Vacio"){
+        espera_recogida.wait();
+    }
+
+}
+
+
+
 
 //-------------------------------------------------------------------------
 // Función que simula la acción de producir un ingrediente, como un retardo
@@ -44,7 +109,7 @@ int producir_ingrediente()
 //----------------------------------------------------------------------
 // función que ejecuta la hebra del estanquero
 
-void funcion_hebra_estanquero(  )
+void funcion_hebra_estanquero(MRef<Estanco> monitor)
 {
 
    int i;
@@ -52,9 +117,8 @@ void funcion_hebra_estanquero(  )
    while (true){
 
       i = producir_ingrediente();
-      sem_wait(mostr_vacio);
-      cout << "           Puesto ingrediente: " << ingredientes[i] << endl;
-      sem_signal(ingr_disp[i]);
+      monitor->ponerIngrediente(i);
+      monitor->esperarRecogidaIngrediente();
 
    }
 
@@ -85,18 +149,15 @@ void fumar( int num_fumador )
 
 //----------------------------------------------------------------------
 // función que ejecuta la hebra del fumador
-void  funcion_hebra_fumador( int num_fumador )
+void  funcion_hebra_fumador(MRef<Estanco> monitor, int num_fumador )
 {
 
    while( true )
    {
 
-      sem_wait(ingr_disp[num_fumador]);
-      cout << "           Retirado ingrediente: " << ingredientes[num_fumador] << endl;
-      sem_signal(mostr_vacio);
+      monitor->obtenerIngrediente(num_fumador);
       fumar(num_fumador);
 
-   
    }
 }
 
@@ -111,17 +172,20 @@ int main()
         << "------------------------------------------------------------------" << endl
         << flush ;
 
+   // crear monitor  ('monitor' es una referencia al mismo, de tipo MRef<...>)
+   MRef<Estanco> monitor = Create<Estanco>() ;
+
 
    thread hebra_fumador[3],
           hebra_estanquero;
 
    for (int i=0; i<num_fumadores; i++){
 
-      hebra_fumador[i] = thread(funcion_hebra_fumador, i);
+      hebra_fumador[i] = thread(funcion_hebra_fumador, monitor, i);
 
    }
 
-   hebra_estanquero = thread(funcion_hebra_estanquero);
+   hebra_estanquero = thread(funcion_hebra_estanquero, monitor);
 
 
    for (int i=0; i<num_fumadores; i++){

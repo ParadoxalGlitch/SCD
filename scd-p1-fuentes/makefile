@@ -1,5 +1,5 @@
 .SUFFIXES:
-.PHONY: pc, fu, pcpla, fifo, lifo t 
+.PHONY: pc, fu, pcpla, pcm, fifo, lifo, t 
 .PRECIOUS: %_exe
 
 compilador:=g++
@@ -7,8 +7,11 @@ compilador:=g++
 pc: prodcons_exe
 	./$<
 
-fu: fumadores_exe
+fu: fumadores-plantilla_exe
 	./$< 
+
+pcm: prodcons-multiple_exe
+	./$<
 	
 fifo: prodconsFIFO_exe
 	./$<
