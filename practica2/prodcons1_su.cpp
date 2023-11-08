@@ -7,12 +7,28 @@
 //
 // Ejemplo de un monitor en C++11 con semántica SU, para el problema
 // del productor/consumidor, con productor y consumidor únicos.
-// Opcion LIFO
+// Opcion FIFO
 //
 // Historial:
 // Creado el 30 Sept de 2022. (adaptado de prodcons2_su.cpp)
 // 20 oct 22 --> paso este archivo de FIFO a LIFO, para que se corresponda con lo que dicen las transparencias
+// 25 oct 23 --> paso este archivo de LIFO a FIFO, tal como me piden
 // -----------------------------------------------------------------------------------
+
+
+// -----------------------------------------------------------------------------------
+// Cambios necesarios para realizar la versión FIFO:
+//
+// -Debido a que utilizo un vector circular como cola FIFO, debo añadir dos
+//  variables al monitor:
+//       - primera_ocupada(int)
+//       - usados (int): numero de elementos usados en el vector.
+// 
+// -Para la correcta gestión del vector, el método de añadir elementos
+//  se ve ligeramente modificado, utilizando el operador % y actualizando
+//  el valor de usados y de primera_ocupada
+// -----------------------------------------------------------------------------------
+
 
 
 #include <iostream>

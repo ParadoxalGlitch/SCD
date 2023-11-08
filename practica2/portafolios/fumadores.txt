@@ -1,0 +1,78 @@
+Variable o variables permanentes necesarias para el ejercicio de los fumadores:
+
+    -La unica variable necesaria es el string 'mostrador'
+     que actúa de monstrador, donde se almacena los productos 
+     que van siendo producidos.
+
+     Los valores que puede tener este string son:
+        -"Papel"
+        -"Cerillas"
+        -"Tabaco"
+        -"Vacio" (Valor por defecto)
+
+
+Cola o colas condición necesarias:
+
+    -espera_ingrediente: En esta cola estarán los fumadores que,
+     o bien han acabado de fumar, o acaban de "entrar" al estanco.
+
+     Aquí donde esperan a que el estanquero coloque el ingrediente
+     que necesitan.  (mostrador == "Vacio")
+
+    -espera_recogida: En esta cola estará el estanquero solamente cuando
+     haya colocado un producto en el mostrador y esté esperando a que éste
+     sea recogido por su correspondiente fumador. (mostrador != "Vacio)
+
+
+
+Pseudo-código de los tres procedimientos del monitor:
+
+
+
+obtenerIngrediente:
+
+
+procedure obtenerIngrediente [ingrediente]
+begin
+    while mostrador == Vacio do begin
+        espera_ingrediente.wait();
+    end
+
+    while mostrador != ingrediente do begin
+        espera_ingrediente.signal();
+        espera_ingrediente.wait();
+    end
+
+    mostrador = vacio;
+    print("retirado ingr.:",ingrediente);
+    espera_recogida.signal();
+end
+
+
+
+
+
+ponerIngrediente:
+
+
+
+procecure ponerIngrediente [ingrediente]
+begin
+    mostrador = ingrediente;
+    print("puesto ingr.:",ingrediente);
+    espera_ingrediente.signal();
+end
+
+
+
+
+esperarRecogidaIngrediente:
+
+
+procedure esperarRecogidaIngrediente()
+begin
+    if mostrador != vacio then
+        espera_recogida.wait();
+end
+
+
