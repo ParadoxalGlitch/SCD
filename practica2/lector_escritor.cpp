@@ -9,8 +9,8 @@ using namespace std ;
 using namespace scd ;
 
 // numero de fumadores 
-const int num_lectores = 2;
-const int num_escritores = 2;
+const int num_lectores = 3;
+const int num_escritores = 3;
 
 
 // *****************************************************************************
@@ -83,7 +83,7 @@ void Lec_Esc::fin_escritura()
 
 
 //----------------------------------------------------------------------
-// función que ejecuta la hebra del estanquero
+// función que ejecuta la hebra del lector
 
 void funcion_hebra_lector(MRef<Lec_Esc> monitor, int n_lector)
 {
@@ -93,7 +93,7 @@ void funcion_hebra_lector(MRef<Lec_Esc> monitor, int n_lector)
         monitor->ini_lectura();
       
         // calcular milisegundos aleatorios de duración de la acción de leer)
-        chrono::milliseconds duracion_lec( aleatorio<100,1000>() );
+        chrono::milliseconds duracion_lec( aleatorio<10,100>() );
 
         cout << "Lector " << n_lector << "ha empezado a leer" << endl;
 
@@ -104,6 +104,12 @@ void funcion_hebra_lector(MRef<Lec_Esc> monitor, int n_lector)
 
         monitor->fin_lectura();
 
+        //"Resto del codigo"
+
+        chrono::milliseconds duracion_resto( aleatorio<100,1000>() );
+
+        this_thread::sleep_for( duracion_resto );
+
 
    }
 
@@ -111,7 +117,7 @@ void funcion_hebra_lector(MRef<Lec_Esc> monitor, int n_lector)
 
 
 //----------------------------------------------------------------------
-// función que ejecuta la hebra del fumador
+// función que ejecuta la hebra del escritor
 void funcion_hebra_escritor(MRef<Lec_Esc> monitor, int n_escritor)
 {
 
@@ -130,6 +136,10 @@ void funcion_hebra_escritor(MRef<Lec_Esc> monitor, int n_escritor)
         cout << "Escritor " << n_escritor << "ha acabado de escribir" << endl;
 
         monitor->fin_escritura();
+
+        chrono::milliseconds duracion_resto( aleatorio<10,100>() );
+
+        this_thread::sleep_for( duracion_resto );
    }
 }
 

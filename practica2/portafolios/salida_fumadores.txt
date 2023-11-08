@@ -1,0 +1,327 @@
+-----------------------------------------------------------------
+Problema de los fumadores.
+------------------------------------------------------------------
+Estanquero : empieza a producir ingrediente (53 milisegundos)
+Estanquero : termina de producir ingrediente Cerillas
+           Puesto ingrediente: Cerillas
+           Retirado ingrediente: Cerillas
+Fumador Estanquero : empieza a producir ingrediente (0  : empieza a fumar (8472 milisegundos) milisegundos)
+
+Fumador 0  : termina de fumar, comienza espera de ingrediente.
+Estanquero : termina de producir ingrediente Cerillas
+           Puesto ingrediente: Cerillas
+           Retirado ingrediente: Cerillas
+Fumador 0  : empieza a fumar (23 milisegundos)
+Estanquero : empieza a producir ingrediente (47 milisegundos)
+Fumador 0  : termina de fumar, comienza espera de ingrediente.
+Estanquero : termina de producir ingrediente Tabaco
+           Puesto ingrediente: Tabaco
+           Retirado ingrediente: Tabaco
+Fumador 1  : empieza a fumar (45 milisegundos)
+Estanquero : empieza a producir ingrediente (63 milisegundos)
+Fumador 1  : termina de fumar, comienza espera de ingrediente.
+Estanquero : termina de producir ingrediente Papel
+           Puesto ingrediente: Papel
+           Retirado ingrediente: Papel
+Fumador 2  : empieza a fumar (155 milisegundos)
+Estanquero : empieza a producir ingrediente (79 milisegundos)
+Estanquero : termina de producir ingrediente Tabaco
+           Puesto ingrediente: Tabaco
+           Retirado ingrediente: Tabaco
+Fumador 1  : empieza a fumar (42 milisegundos)
+Estanquero : empieza a producir ingrediente (64 milisegundos)
+Fumador 1  : termina de fumar, comienza espera de ingrediente.
+Estanquero : termina de producir ingrediente Tabaco
+           Puesto ingrediente: Tabaco
+           Retirado ingrediente: Tabaco
+Fumador 1  : empieza a fumar (190 milisegundos)
+Estanquero : empieza a producir ingrediente (95 milisegundos)
+Fumador 2  : termina de fumar, comienza espera de ingrediente.
+Estanquero : termina de producir ingrediente Papel
+           Puesto ingrediente: Papel
+           Retirado ingrediente: Papel
+Fumador 2  : empieza a fumar (103 milisegundos)
+Estanquero : empieza a producir ingrediente (42 milisegundos)
+Estanquero : termina de producir ingrediente Tabaco
+           Puesto ingrediente: Tabaco
+Fumador 1  : termina de fumar, comienza espera de ingrediente.
+           Retirado ingrediente: Tabaco
+Estanquero : empieza a producir ingrediente (54 milisegundos)
+Fumador 1  : empieza a fumar (121 milisegundos)
+Fumador 2  : termina de fumar, comienza espera de ingrediente.
+Estanquero : termina de producir ingrediente Tabaco
+           Puesto ingrediente: Tabaco
+Fumador 1  : termina de fumar, comienza espera de ingrediente.
+           Retirado ingrediente: Tabaco
+Estanquero : empieza a producir ingrediente (100 milisegundos)
+Fumador 1  : empieza a fumar (119 milisegundos)
+Estanquero : termina de producir ingrediente Papel
+           Puesto ingrediente: Papel
+           Retirado ingrediente: Papel
+Fumador 2  : empieza a fumar (58 milisegundos)
+Estanquero : empieza a producir ingrediente (77 milisegundos)
+Fumador 1  : termina de fumar, comienza espera de ingrediente.
+Fumador 2  : termina de fumar, comienza espera de ingrediente.
+Estanquero : termina de producir ingrediente Papel
+           Puesto ingrediente: Papel
+           Retirado ingrediente: Papel
+Fumador 2  : empieza a fumar (186 milisegundos)
+Estanquero : empieza a producir ingrediente (47 milisegundos)
+Estanquero : termina de producir ingrediente Tabaco
+           Puesto ingrediente: Tabaco
+           Retirado ingrediente: Tabaco
+Fumador 1  : empieza a fumar (185 milisegundos)
+Estanquero : empieza a producir ingrediente (51 milisegundos)
+Estanquero : termina de producir ingrediente Tabaco
+           Puesto ingrediente: Tabaco
+Fumador 2  : termina de fumar, comienza espera de ingrediente.
+Fumador 1  : termina de fumar, comienza espera de ingrediente.
+           Retirado ingrediente: Tabaco
+Estanquero : empieza a producir ingrediente (59 milisegundos)
+Fumador 1  : empieza a fumar (160 milisegundos)
+Estanquero : termina de producir ingrediente Cerillas
+           Puesto ingrediente: Cerillas
+           Retirado ingrediente: Cerillas
+Fumador 0  : empieza a fumar (55 milisegundos)
+Estanquero : empieza a producir ingrediente (62 milisegundos)
+Fumador 0  : termina de fumar, comienza espera de ingrediente.
+Estanquero : termina de producir ingrediente Cerillas
+           Puesto ingrediente: Cerillas
+           Retirado ingrediente: Cerillas
+Fumador 0  : empieza a fumar (119 milisegundos)
+Estanquero : empieza a producir ingrediente (20 milisegundos)
+Estanquero : termina de producir ingrediente Tabaco
+           Puesto ingrediente: Tabaco
+Fumador 1  : termina de fumar, comienza espera de ingrediente.
+           Retirado ingrediente: Tabaco
+Estanquero : empieza a producir ingrediente (67 milisegundos)
+Fumador 1  : empieza a fumar (36 milisegundos)
+Fumador 1  : termina de fumar, comienza espera de ingrediente.
+Estanquero : termina de producir ingrediente Tabaco
+           Puesto ingrediente: Tabaco
+           Retirado ingrediente: Tabaco
+Fumador 1  : empieza a fumar (183 milisegundos)
+Estanquero : empieza a producir ingrediente (66 milisegundos)
+Fumador 0  : termina de fumar, comienza espera de ingrediente.
+Estanquero : termina de producir ingrediente Cerillas
+           Puesto ingrediente: Cerillas
+           Retirado ingrediente: Cerillas
+Fumador 0  : empieza a fumar (142 milisegundos)
+Estanquero : empieza a producir ingrediente (64 milisegundos)
+Estanquero : termina de producir ingrediente Cerillas
+           Puesto ingrediente: Cerillas
+Fumador 1  : termina de fumar, comienza espera de ingrediente.
+Fumador 0  : termina de fumar, comienza espera de ingrediente.
+           Retirado ingrediente: Cerillas
+Estanquero : empieza a producir ingrediente (66 milisegundos)
+Fumador 0  : empieza a fumar (86 milisegundos)
+Estanquero : termina de producir ingrediente Papel
+           Puesto ingrediente: Papel
+           Retirado ingrediente: Papel
+Fumador 2  : empieza a fumar (179 milisegundos)
+Estanquero : empieza a producir ingrediente (32 milisegundos)
+Fumador 0  : termina de fumar, comienza espera de ingrediente.
+Estanquero : termina de producir ingrediente Tabaco
+           Puesto ingrediente: Tabaco
+           Retirado ingrediente: Tabaco
+Fumador 1  : empieza a fumar (56 milisegundos)
+Estanquero : empieza a producir ingrediente (100 milisegundos)
+Fumador 1  : termina de fumar, comienza espera de ingrediente.
+Estanquero : termina de producir ingrediente Papel
+           Puesto ingrediente: Papel
+Fumador 2  : termina de fumar, comienza espera de ingrediente.
+           Retirado ingrediente: Papel
+Estanquero : empieza a producir ingrediente (57 milisegundos)
+Fumador 2  : empieza a fumar (54 milisegundos)
+Fumador 2  : termina de fumar, comienza espera de ingrediente.
+Estanquero : termina de producir ingrediente Tabaco
+           Puesto ingrediente: Tabaco
+           Retirado ingrediente: Tabaco
+Fumador 1  : empieza a fumar (91 milisegundos)
+Estanquero : empieza a producir ingrediente (27 milisegundos)
+Estanquero : termina de producir ingrediente Tabaco
+           Puesto ingrediente: Tabaco
+Fumador 1  : termina de fumar, comienza espera de ingrediente.
+           Retirado ingrediente: Tabaco
+Estanquero : empieza a producir ingrediente (47 milisegundos)
+Fumador 1  : empieza a fumar (192 milisegundos)
+Estanquero : termina de producir ingrediente Cerillas
+           Puesto ingrediente: Cerillas
+           Retirado ingrediente: Cerillas
+Fumador 0  : empieza a fumar (79 milisegundos)
+Estanquero : empieza a producir ingrediente (29 milisegundos)
+Estanquero : termina de producir ingrediente Tabaco
+           Puesto ingrediente: Tabaco
+Fumador 0  : termina de fumar, comienza espera de ingrediente.
+Fumador 1  : termina de fumar, comienza espera de ingrediente.
+           Retirado ingrediente: Tabaco
+Estanquero : empieza a producir ingrediente (94 milisegundos)
+Fumador 1  : empieza a fumar (20 milisegundos)
+Fumador 1  : termina de fumar, comienza espera de ingrediente.
+Estanquero : termina de producir ingrediente Tabaco
+           Puesto ingrediente: Tabaco
+           Retirado ingrediente: Tabaco
+Fumador 1  : empieza a fumar (168 milisegundos)
+Estanquero : empieza a producir ingrediente (89 milisegundos)
+Estanquero : termina de producir ingrediente Cerillas
+           Puesto ingrediente: Cerillas
+           Retirado ingrediente: Cerillas
+Fumador 0  : empieza a fumar (176 milisegundos)
+Estanquero : empieza a producir ingrediente (46 milisegundos)
+Estanquero : termina de producir ingrediente Cerillas
+           Puesto ingrediente: Cerillas
+Fumador 1  : termina de fumar, comienza espera de ingrediente.
+Fumador 0  : termina de fumar, comienza espera de ingrediente.
+           Retirado ingrediente: Cerillas
+Estanquero : empieza a producir ingrediente (37 milisegundos)
+Fumador 0  : empieza a fumar (42 milisegundos)
+Estanquero : termina de producir ingrediente Papel
+           Puesto ingrediente: Papel
+           Retirado ingrediente: Papel
+Fumador 2  : empieza a fumar (128 milisegundos)
+Estanquero : empieza a producir ingrediente (51 milisegundos)
+Fumador 0  : termina de fumar, comienza espera de ingrediente.
+Estanquero : termina de producir ingrediente Papel
+           Puesto ingrediente: Papel
+Fumador 2  : termina de fumar, comienza espera de ingrediente.
+           Retirado ingrediente: Papel
+Estanquero : empieza a producir ingrediente (59 milisegundos)
+Fumador 2  : empieza a fumar (71 milisegundos)
+Estanquero : termina de producir ingrediente Papel
+           Puesto ingrediente: Papel
+Fumador 2  : termina de fumar, comienza espera de ingrediente.
+           Retirado ingrediente: Papel
+Estanquero : empieza a producir ingrediente (61 milisegundos)
+Fumador 2  : empieza a fumar (72 milisegundos)
+Estanquero : termina de producir ingrediente Papel
+           Puesto ingrediente: Papel
+Fumador 2  : termina de fumar, comienza espera de ingrediente.
+           Retirado ingrediente: Papel
+Estanquero : empieza a producir ingrediente (28 milisegundos)
+Fumador 2  : empieza a fumar (28 milisegundos)
+Estanquero : termina de producir ingrediente Cerillas
+           Puesto ingrediente: Cerillas
+Fumador 2  : termina de fumar, comienza espera de ingrediente.
+           Retirado ingrediente: Cerillas
+Fumador 0  : empieza a fumar (105 milisegundos)
+Estanquero : empieza a producir ingrediente (47 milisegundos)
+Estanquero : termina de producir ingrediente Tabaco
+           Puesto ingrediente: Tabaco
+           Retirado ingrediente: Tabaco
+Fumador 1  : empieza a fumar (52 milisegundos)
+Estanquero : empieza a producir ingrediente (13 milisegundos)
+Estanquero : termina de producir ingrediente Papel
+           Puesto ingrediente: Papel
+           Retirado ingrediente: Papel
+Fumador 2  : empieza a fumar (27 milisegundos)
+Estanquero : empieza a producir ingrediente (20 milisegundos)
+Estanquero : termina de producir ingrediente Tabaco
+           Puesto ingrediente: Tabaco
+Fumador 2  : termina de fumar, comienza espera de ingrediente.
+Fumador 1  : termina de fumar, comienza espera de ingrediente.
+           Retirado ingrediente: Tabaco
+Estanquero : empieza a producir ingrediente (100 milisegundos)
+Fumador 1  : empieza a fumar (123 milisegundos)
+Fumador 0  : termina de fumar, comienza espera de ingrediente.
+Estanquero : termina de producir ingrediente Tabaco
+           Puesto ingrediente: Tabaco
+Fumador 1  : termina de fumar, comienza espera de ingrediente.
+           Retirado ingrediente: Tabaco
+Estanquero : empieza a producir ingrediente (94 milisegundos)
+Fumador 1  : empieza a fumar (90 milisegundos)
+Fumador 1  : termina de fumar, comienza espera de ingrediente.
+Estanquero : termina de producir ingrediente Cerillas
+           Puesto ingrediente: Cerillas
+           Retirado ingrediente: Cerillas
+Fumador 0  : empieza a fumar (68 milisegundos)
+Estanquero : empieza a producir ingrediente (25 milisegundos)
+Estanquero : termina de producir ingrediente Cerillas
+           Puesto ingrediente: Cerillas
+Fumador 0  : termina de fumar, comienza espera de ingrediente.
+           Retirado ingrediente: Cerillas
+Estanquero : empieza a producir ingrediente (82 milisegundos)
+Fumador 0  : empieza a fumar (46 milisegundos)
+Fumador 0  : termina de fumar, comienza espera de ingrediente.
+Estanquero : termina de producir ingrediente Papel
+           Puesto ingrediente: Papel
+           Retirado ingrediente: Papel
+Fumador 2  : empieza a fumar (166 milisegundos)
+Estanquero : empieza a producir ingrediente (71 milisegundos)
+Estanquero : termina de producir ingrediente Papel
+           Puesto ingrediente: Papel
+Fumador 2  : termina de fumar, comienza espera de ingrediente.
+           Retirado ingrediente: Papel
+Estanquero : empieza a producir ingrediente (91 milisegundos)
+Fumador 2  : empieza a fumar (82 milisegundos)
+Fumador 2  : termina de fumar, comienza espera de ingrediente.
+Estanquero : termina de producir ingrediente Tabaco
+           Puesto ingrediente: Tabaco
+           Retirado ingrediente: Tabaco
+Fumador 1  : empieza a fumar (149 milisegundos)
+Estanquero : empieza a producir ingrediente (67 milisegundos)
+Estanquero : termina de producir ingrediente Cerillas
+           Puesto ingrediente: Cerillas
+           Retirado ingrediente: Cerillas
+Fumador 0  : empieza a fumar (70 milisegundos)
+Estanquero : empieza a producir ingrediente (29 milisegundos)
+Estanquero : termina de producir ingrediente Tabaco
+           Puesto ingrediente: Tabaco
+Fumador 0  : termina de fumar, comienza espera de ingrediente.
+Fumador 1  : termina de fumar, comienza espera de ingrediente.
+           Retirado ingrediente: Tabaco
+Estanquero : empieza a producir ingrediente (66 milisegundos)
+Fumador 1  : empieza a fumar (24 milisegundos)
+Fumador 1  : termina de fumar, comienza espera de ingrediente.
+Estanquero : termina de producir ingrediente Papel
+           Puesto ingrediente: Papel
+           Retirado ingrediente: Papel
+Fumador 2  : empieza a fumar (165 milisegundos)
+Estanquero : empieza a producir ingrediente (70 milisegundos)
+Estanquero : termina de producir ingrediente Papel
+           Puesto ingrediente: Papel
+Fumador 2  : termina de fumar, comienza espera de ingrediente.
+           Retirado ingrediente: Papel
+Estanquero : empieza a producir ingrediente (31 milisegundos)
+Fumador 2  : empieza a fumar (136 milisegundos)
+Estanquero : termina de producir ingrediente Cerillas
+           Puesto ingrediente: Cerillas
+           Retirado ingrediente: Cerillas
+Fumador 0  : empieza a fumar (198 milisegundos)
+Estanquero : empieza a producir ingrediente (78 milisegundos)
+Estanquero : termina de producir ingrediente Cerillas
+           Puesto ingrediente: Cerillas
+Fumador 2  : termina de fumar, comienza espera de ingrediente.
+Fumador 0  : termina de fumar, comienza espera de ingrediente.
+           Retirado ingrediente: Cerillas
+Estanquero : empieza a producir ingrediente (51 milisegundos)
+Fumador 0  : empieza a fumar (167 milisegundos)
+Estanquero : termina de producir ingrediente Papel
+           Puesto ingrediente: Papel
+           Retirado ingrediente: Papel
+Fumador 2  : empieza a fumar (160 milisegundos)
+Estanquero : empieza a producir ingrediente (30 milisegundos)
+Estanquero : termina de producir ingrediente Papel
+           Puesto ingrediente: Papel
+Fumador 0  : termina de fumar, comienza espera de ingrediente.
+Fumador 2  : termina de fumar, comienza espera de ingrediente.
+           Retirado ingrediente: Papel
+Estanquero : empieza a producir ingrediente (56 milisegundos)
+Fumador 2  : empieza a fumar (49 milisegundos)
+Fumador 2  : termina de fumar, comienza espera de ingrediente.
+Estanquero : termina de producir ingrediente Cerillas
+           Puesto ingrediente: Cerillas
+           Retirado ingrediente: Cerillas
+Fumador 0  : empieza a fumar (94 milisegundos)
+Estanquero : empieza a producir ingrediente (89 milisegundos)
+Estanquero : termina de producir ingrediente Cerillas
+           Puesto ingrediente: Cerillas
+Fumador 0  : termina de fumar, comienza espera de ingrediente.
+           Retirado ingrediente: Cerillas
+Estanquero : empieza a producir ingrediente (72 milisegundos)
+Fumador 0  : empieza a fumar (132 milisegundos)
+Estanquero : termina de producir ingrediente Cerillas
+           Puesto ingrediente: Cerillas
+Fumador 0  : termina de fumar, comienza espera de ingrediente.
+           Retirado ingrediente: Cerillas
+Estanquero : empieza a producir ingrediente (24 milisegundos)
+Fumador 0  : empieza a fumar (67 milisegundos)
