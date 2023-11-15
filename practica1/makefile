@@ -19,6 +19,15 @@ fifo: prodconsFIFO_exe
 lifo: prodconsLIFO_exe
 	./$<
 
+pcmd: prodcons-multiple-dinamico_exe
+	./$<
+
+fufin: fumadores-con-fin_exe
+	./$<
+
+fuesm: fumadores-estanqueros-multiples_exe
+	./$<
+	
 ## esto solo se usa para probar que la plantilla compila
 ## (da error al ejecutar)
 pcpla: prodcons-plantilla_exe 

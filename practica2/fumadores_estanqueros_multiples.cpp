@@ -9,7 +9,8 @@ using namespace std ;
 using namespace scd ;
 
 // numero de fumadores 
-const int num_fumadores = 3;
+const int num_fumadores = 7;
+const int num_estanqueros = 4;
 const string ingredientes[3] = {"Cerillas", "Tabaco", "Papel"};
 
 
@@ -24,7 +25,7 @@ class Estanco : public HoareMonitor
 
  CondVar                    // colas condicion:
    espera_ingrediente,      //  cola donde espera los fumadores
-   espera_recogida;         //  cola donde espera el estanquero
+   espera_recogida;   //  cola donde espera el estanquero
 
  public:                    // constructor y métodos públicos
    Estanco() ;              // constructor
@@ -87,21 +88,21 @@ void Estanco::esperarRecogidaIngrediente()
 // Función que simula la acción de producir un ingrediente, como un retardo
 // aleatorio de la hebra (devuelve número de ingrediente producido)
 
-int producir_ingrediente()
+int producir_ingrediente(int num_estanquero)
 {
    // calcular milisegundos aleatorios de duración de la acción de fumar)
    chrono::milliseconds duracion_produ( aleatorio<10,100>() );
 
    // informa de que comienza a producir
-   cout << "Estanquero : empieza a producir ingrediente (" << duracion_produ.count() << " milisegundos)" << endl;
+   cout << "Estanquero " << num_estanquero << ": empieza a producir ingrediente (" << duracion_produ.count() << " milisegundos)" << endl;
 
    // espera bloqueada un tiempo igual a ''duracion_produ' milisegundos
    this_thread::sleep_for( duracion_produ );
 
-   const int num_ingrediente = aleatorio<0,num_fumadores-1>() ;
+   const int num_ingrediente = aleatorio<0,2>() ;
 
    // informa de que ha terminado de producir
-   cout << "Estanquero : termina de producir ingrediente " << ingredientes[num_ingrediente] << endl;
+   cout << "Estanquero " << num_estanquero << ": termina de producir ingrediente " << ingredientes[num_ingrediente] << endl;
 
    return num_ingrediente ;
 }
@@ -109,16 +110,17 @@ int producir_ingrediente()
 //----------------------------------------------------------------------
 // función que ejecuta la hebra del estanquero
 
-void funcion_hebra_estanquero(MRef<Estanco> monitor)
+void funcion_hebra_estanquero(MRef<Estanco> monitor, int num_estanquero)
 {
 
    int i;
 
    while (true){
 
-      i = producir_ingrediente();
-      monitor->ponerIngrediente(i);
+      i = producir_ingrediente(num_estanquero);
       monitor->esperarRecogidaIngrediente();
+      monitor->ponerIngrediente(i);
+      
 
    }
 
@@ -131,7 +133,7 @@ void fumar( int num_fumador )
 {
 
    // calcular milisegundos aleatorios de duración de la acción de fumar)
-   chrono::milliseconds duracion_fumar( aleatorio<20,200>() );
+   chrono::milliseconds duracion_fumar( aleatorio<10,100>() );
 
    // informa de que comienza a fumar
 
@@ -155,7 +157,7 @@ void  funcion_hebra_fumador(MRef<Estanco> monitor, int num_fumador )
    while( true )
    {
 
-      monitor->obtenerIngrediente(num_fumador);
+      monitor->obtenerIngrediente(num_fumador%3);
       fumar(num_fumador);
 
    }
@@ -176,8 +178,8 @@ int main()
    MRef<Estanco> monitor = Create<Estanco>() ;
 
 
-   thread hebra_fumador[3],
-          hebra_estanquero;
+   thread hebra_fumador[num_fumadores],
+          hebra_estanquero[num_estanqueros];
 
    for (int i=0; i<num_fumadores; i++){
 
@@ -185,7 +187,12 @@ int main()
 
    }
 
-   hebra_estanquero = thread(funcion_hebra_estanquero, monitor);
+
+   for (int j=0; j<num_estanqueros; j++){
+
+      hebra_estanquero[j] = thread(funcion_hebra_estanquero, monitor, j);
+
+   }
 
 
    for (int i=0; i<num_fumadores; i++){
@@ -194,6 +201,12 @@ int main()
 
    }
 
-      hebra_estanquero.join();
+
+   for (int j=0; j<num_estanqueros; j++){
+
+      hebra_estanquero[j].join();
+
+   }
+
 
 }

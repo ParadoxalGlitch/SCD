@@ -1,0 +1,22 @@
+/*
+Como se podria hacer una copia de un fichero f en otro g de forma concurrente usando cobegin coend
+*/
+
+
+process CopiaConcurrente();
+
+    var v : T; 
+        v_sig : T;
+
+begin 
+
+    v := leer(f);
+    while not fin(f) do
+    begin
+        cobegin        
+            escribir(g,v);
+            v_sig := leer(f);
+        coend 
+        v := v_sig;
+    end 
+end

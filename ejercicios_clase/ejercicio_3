@@ -1,0 +1,85 @@
+/*
+ver pdf: Pasar de grafos a programas con fork, join, cobegin y coend
+*/
+
+a)
+
+    begin    
+        P0;
+        fork P2;
+            P1;
+            P3;
+            fork P5;
+                P4;
+            join P5;
+        join P2;
+        P6;
+    end
+
+
+    begin
+        P0;
+        cobegin
+            P2;
+            begin   // Grupo de P1,P3,P4,P5,P6
+                P1;
+                P3;
+                cobegin
+                    P4;
+                    P5;
+                coend 
+            coend 
+        coend 
+        P6;
+    end
+
+
+
+b)
+
+    begin P0;
+        fork P2;
+            P1;
+            fork P3;
+            fork P4;
+                P5;
+            join P3;
+            join P4;
+            join P2;
+            P6;
+    end
+
+
+
+    begin P0;
+        cobegin
+            P2;
+            begin 
+                P1;
+                cobegin
+                    P4,P3,P5
+                coend 
+            end 
+        coend 
+        P6;
+    end
+
+
+
+c)
+
+begin
+    P0;
+    fork P2;
+    P1;
+    P3;
+    fork P4;
+        joinP2;
+        P5;
+    join P4;
+    P6;
+end
+
+
+no se puede hacer con cobegin
+

@@ -22,6 +22,12 @@ fum: fumadores_exe
 esc: lector_escritor_exe
 	./$<
 
+fuesm: fumadores_estanqueros_multiples_exe
+	./$<
+
+fumfin: fumadores_con_fin_exe
+	./$<
+
 %_exe: %.cpp scd.cpp scd.h
 	$(compilador) $(opcionesc)  -o $@ $< scd.cpp
 

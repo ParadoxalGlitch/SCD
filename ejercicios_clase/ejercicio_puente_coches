@@ -34,6 +34,8 @@ Monitor Puente{
 
 	end
 
+
+	
 	procedure EntrarCocheDelSur()
 	begin
 	if CochesDelNorte > 0 then

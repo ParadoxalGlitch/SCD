@@ -5,6 +5,7 @@
 #include <random>
 #include "scd.h"
 
+
 using namespace std ;
 using namespace scd ;
 
@@ -14,22 +15,21 @@ using namespace scd ;
 const unsigned 
    num_items = 40 ,   // número de items
 	tam_vec   = 10 ,  // tamaño del buffer
-   num_prod = 4,
-   num_cons = 4;
+   num_prod = 8,
+   num_cons = 5;
 unsigned  
    cont_prod[num_items] = {0}, // contadores de verificación: para cada dato, número de veces que se ha producido.
    cont_cons[num_items] = {0}; // contadores de verificación: para cada dato, número de veces que se ha consumido.
 
 
    // Vector de datos
-   int cantidad_producir = num_items / num_prod;
-   int cantidad_consumir = num_items / num_cons;
-   
    int items[tam_vec];
-   int producidos[num_prod] = {0};
+   int siguiente_dato= 0;
    int primera_ocupada = 0;
    int primera_libre = 0;
 
+   int producidos = num_items;
+   int consumidos = 0;
 
 
    Semaphore ocupadas = 0;
@@ -41,11 +41,11 @@ unsigned
 // funciones comunes a las dos soluciones (fifo y lifo)
 //----------------------------------------------------------------------
 
-unsigned producir_dato(int i)
+unsigned producir_dato()
 {
    this_thread::sleep_for( chrono::milliseconds( aleatorio<20,100>() ));
-   const unsigned dato_producido = i*cantidad_producir + producidos[i];
-   producidos[i]++;
+   const unsigned dato_producido = siguiente_dato;
+   siguiente_dato++;
    cont_prod[dato_producido] ++ ;
    cout << "producido: " << dato_producido << endl << flush ;
    return dato_producido ;
@@ -56,6 +56,7 @@ void consumir_dato( unsigned dato )
 {
    assert( dato < num_items );
    cont_cons[dato] ++ ;
+
    this_thread::sleep_for( chrono::milliseconds( aleatorio<20,100>() ));
 
    cout << "                  consumido: " << dato << endl ;
@@ -85,38 +86,41 @@ void test_contadores()
 
 //----------------------------------------------------------------------
 
-void  funcion_hebra_productora(unsigned int i)
+void  funcion_hebra_productora()
 {
-   for(int j = 0 ; j < cantidad_producir ; j++ )
-   {
-      int dato = producir_dato(i) ;
+
+    while(producidos > 0){
+      producidos--;
+      int dato = producir_dato();
 
       sem_wait(libres);
 
       sem_wait(prod_leyendo);
 
-      items[primera_libre++] = dato;
-      primera_libre %= tam_vec;
+      items[primera_libre] = dato;
+      primera_libre = (primera_libre + 1) % tam_vec;
 
       sem_signal(prod_leyendo);
       
       sem_signal(ocupadas);
-   }
+    }
 }
 
 //----------------------------------------------------------------------
 
-void funcion_hebra_consumidora(unsigned int i)
+void funcion_hebra_consumidora()
 {
-   for( unsigned i = 0 ; i < cantidad_consumir ; i++ )
-   {
-      sem_wait(ocupadas);
-      int dato ;
 
+   while(consumidos < num_items)
+   {
+      consumidos++;
+      int dato;
+      
+      sem_wait(ocupadas);
       sem_wait(cons_leyendo);
 
-      dato = items[primera_ocupada++];
-      primera_ocupada %= tam_vec;
+      dato = items[primera_ocupada];
+      primera_ocupada = (primera_ocupada + 1)%tam_vec;
 
       sem_signal(cons_leyendo);
       
@@ -140,13 +144,13 @@ int main()
 
    for (int i=0; i<num_prod; i++){
 
-      hebra_productora[i] = thread(funcion_hebra_productora, i);
+      hebra_productora[i] = thread(funcion_hebra_productora);
 
    }
 
    for (int i=0; i<num_cons; i++){
 
-      hebra_consumidora[i] = thread(funcion_hebra_consumidora, i);
+      hebra_consumidora[i] = thread(funcion_hebra_consumidora);
 
    }
 

@@ -12,11 +12,15 @@ using namespace scd ;
 // numero de fumadores 
 
 const int num_fumadores = 3 ;
+const int fumar_max = 5;
+
+int producidos[3] = {0,0,0};
+int cigarrillos_fumados[num_fumadores] = {0};
 
 Semaphore mostr_vacio = 1;
-Semaphore ingr_disp[num_fumadores] = {0,0,0};
+Semaphore ingr_disp[3] = {0,0,0};
 
-string ingredientes[num_fumadores] = {"Cerillas", "Tabaco", "Papel"};
+string ingredientes[3] = {"Cerillas", "Tabaco", "Papel"};
 
 //-------------------------------------------------------------------------
 // Función que simula la acción de producir un ingrediente, como un retardo
@@ -33,10 +37,18 @@ int producir_ingrediente()
    // espera bloqueada un tiempo igual a ''duracion_produ' milisegundos
    this_thread::sleep_for( duracion_produ );
 
-   const int num_ingrediente = aleatorio<0,2>() ;
+    int num_ingrediente;
+
+    do{
+
+        num_ingrediente = aleatorio<0,2>() ;
+
+    }while(producidos[num_ingrediente] == fumar_max);
+
+    producidos[num_ingrediente]++;
 
    // informa de que ha terminado de producir
-   cout << "Estanquero : termina de producir ingrediente " << ingredientes[num_ingrediente] << endl;
+   cout << "Estanquero : termina de producir ingrediente " << ingredientes[num_ingrediente] << " [" << producidos[num_ingrediente] << "]" << endl;
 
    return num_ingrediente ;
 }
@@ -48,16 +60,18 @@ void funcion_hebra_estanquero(  )
 {
 
    int i;
+   int producidos = 0;
 
-   while (true){
+   while(producidos < num_fumadores*fumar_max){
 
       i = producir_ingrediente();
       sem_wait(mostr_vacio);
       cout << "           Puesto ingrediente: " << ingredientes[i] << endl;
       sem_signal(ingr_disp[i]);
-
-   }
-
+      producidos++;
+    }
+   
+    cout << "HE TERMINADO DE PRODUCIR COSAS" << endl;
 }
 
 //-------------------------------------------------------------------------
@@ -87,17 +101,22 @@ void fumar( int num_fumador )
 // función que ejecuta la hebra del fumador
 void  funcion_hebra_fumador( int num_fumador )
 {
-
-   while( true )
+   while( cigarrillos_fumados[num_fumador] < fumar_max)
    {
 
       sem_wait(ingr_disp[num_fumador]);
       cout << "           Retirado ingrediente: " << ingredientes[num_fumador] << endl;
       sem_signal(mostr_vacio);
       fumar(num_fumador);
+      cigarrillos_fumados[num_fumador]++;
 
-   
    }
+
+   if (cigarrillos_fumados[num_fumador] == 5){
+    cout << "HE ACABADO DE FUMAR, SOY EL FUMADOR  " << num_fumador << endl;
+   }
+   else 
+    cout << "SE ME HA PERDIDO UN CIGARRO, SOY EL FUMADOR " << num_fumador << endl;
 }
 
 //----------------------------------------------------------------------

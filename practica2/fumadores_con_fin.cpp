@@ -12,6 +12,12 @@ using namespace scd ;
 const int num_fumadores = 3;
 const string ingredientes[3] = {"Cerillas", "Tabaco", "Papel"};
 
+ int    
+    fumados[num_fumadores] = {0},
+    max_fumar = 5,
+    producidos[3] = {0},
+    producidos_totales = 0;
+
 
 // *****************************************************************************
 // clase para monitor Estanco, version FIFO, semántica SC, multiples prod/cons
@@ -34,7 +40,6 @@ class Estanco : public HoareMonitor
 } ;
 // -----------------------------------------------------------------------------
 
-
 Estanco::Estanco()
 {
     mostrador = "Vacio";
@@ -45,6 +50,7 @@ Estanco::Estanco()
 
 void Estanco::obtenerIngrediente(int ingrediente)
 {
+
 
     while (mostrador == "Vacio")
         espera_ingrediente.wait();
@@ -89,6 +95,7 @@ void Estanco::esperarRecogidaIngrediente()
 
 int producir_ingrediente()
 {
+
    // calcular milisegundos aleatorios de duración de la acción de fumar)
    chrono::milliseconds duracion_produ( aleatorio<10,100>() );
 
@@ -98,7 +105,14 @@ int producir_ingrediente()
    // espera bloqueada un tiempo igual a ''duracion_produ' milisegundos
    this_thread::sleep_for( duracion_produ );
 
-   const int num_ingrediente = aleatorio<0,num_fumadores-1>() ;
+   int num_ingrediente;
+   
+   do{
+    num_ingrediente = aleatorio<0,2>();
+   }while(producidos[num_ingrediente] == max_fumar);
+
+   producidos[num_ingrediente]++;
+   producidos_totales++;
 
    // informa de que ha terminado de producir
    cout << "Estanquero : termina de producir ingrediente " << ingredientes[num_ingrediente] << endl;
@@ -114,7 +128,7 @@ void funcion_hebra_estanquero(MRef<Estanco> monitor)
 
    int i;
 
-   while (true){
+   while (producidos_totales < num_fumadores*max_fumar){
 
       i = producir_ingrediente();
       monitor->ponerIngrediente(i);
@@ -122,6 +136,8 @@ void funcion_hebra_estanquero(MRef<Estanco> monitor)
 
    }
 
+
+    cout << "Estanquero: HE ACABADO DE PRODUCIR TODO LO NECESARIO" << endl;
 }
 
 //-------------------------------------------------------------------------
@@ -130,6 +146,7 @@ void funcion_hebra_estanquero(MRef<Estanco> monitor)
 void fumar( int num_fumador )
 {
 
+    fumados[num_fumador]++;
    // calcular milisegundos aleatorios de duración de la acción de fumar)
    chrono::milliseconds duracion_fumar( aleatorio<20,200>() );
 
@@ -152,13 +169,15 @@ void fumar( int num_fumador )
 void  funcion_hebra_fumador(MRef<Estanco> monitor, int num_fumador )
 {
 
-   while( true )
+   while( fumados[num_fumador] < max_fumar)
    {
 
       monitor->obtenerIngrediente(num_fumador);
       fumar(num_fumador);
 
    }
+
+   cout << "Fumador " << num_fumador << " : HE ACABADO DE FUMAR" << endl;
 }
 
 //----------------------------------------------------------------------
